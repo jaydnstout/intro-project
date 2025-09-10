@@ -1,5 +1,3 @@
-using NUnit.Framework.Constraints;
-using Unity.VisualScripting;
 using UnityEngine;
 //using UnityEngine.InputSystem;
 
@@ -61,7 +59,7 @@ public class PlayerController : MonoBehaviour
         float lookH = Input.GetAxis("Mouse X") * lookSensitivity;
         transform.Rotate(0, lookH, 0);
         cameraObject.transform.Rotate(-lookV, 0, 0);
-        
+
         // Clamp camera vertical rotation to prevent flipping
         float cameraRotationX = cameraObject.transform.eulerAngles.x;
         float playerRotationY = transform.eulerAngles.y;
