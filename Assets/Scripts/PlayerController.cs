@@ -54,6 +54,12 @@ public class PlayerController : MonoBehaviour
         float moveZ = (Input.GetAxis("Vertical") * moveSpeed) * Time.deltaTime;
         transform.Translate(moveX, 0, moveZ);
 
+        // Jumping
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+        }
+
         // Mouse Look
         float lookV = Input.GetAxis("Mouse Y") * lookSensitivity;
         float lookH = Input.GetAxis("Mouse X") * lookSensitivity;
@@ -64,19 +70,5 @@ public class PlayerController : MonoBehaviour
         float cameraRotationX = cameraObject.transform.eulerAngles.x;
         float playerRotationY = transform.eulerAngles.y;
         cameraObject.transform.eulerAngles = new Vector3(cameraRotationX, playerRotationY, 0);
-
-        // Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
-        {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Looper")
-        {
-            transform.position = new Vector3(transform.position.x, 9, -3);
-        }
     }
 }
